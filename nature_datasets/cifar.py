@@ -60,12 +60,14 @@ def get_cifar100(opt):
 
     training_transformer = transforms.Compose([
                             transforms.RandomHorizontalFlip(),
+                            transforms.Resize(opt.image_size),
                             transforms.RandomCrop(opt.image_size, 4),
                             transforms.RandomRotation(15),
                             transforms.ToTensor(),
                             norm,
                         ])
     eval_transformer = transforms.Compose([
+                        transforms.Resize(opt.image_size),
                         transforms.ToTensor(),
                         norm,
                     ])

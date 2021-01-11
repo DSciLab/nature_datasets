@@ -1,6 +1,7 @@
 import os
 from torchvision import datasets
 from torchvision import transforms
+from torchvision.transforms.transforms import Resize
 
 from .utils import LinearNormalize
 
@@ -22,12 +23,14 @@ def get_mnist(opt):
 
     training_transformer = transforms.Compose([
                             transforms.RandomHorizontalFlip(),
-                            transforms.RandomCrop(opt.image_size, 4),
+                            transforms.Resize(opt.image_size),
+                            # transforms.RandomCrop(opt.image_size, 4),
                             transforms.RandomRotation(15),
                             transforms.ToTensor(),
                             norm,
                         ])
     eval_transformer = transforms.Compose([
+                        transforms.Resize(opt.image_size),
                         transforms.ToTensor(),
                         norm,
                     ])

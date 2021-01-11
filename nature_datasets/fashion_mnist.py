@@ -19,12 +19,14 @@ def get_fashion_mnist(opt):
 
     training_transformer = transforms.Compose([
                             transforms.RandomHorizontalFlip(),
+                            transforms.Resize(opt.image_size),
                             transforms.RandomCrop(opt.image_size, 4),
                             transforms.RandomRotation(15),
                             transforms.ToTensor(),
                             normalize,
                         ])
     eval_transformer = transforms.Compose([
+                        transforms.Resize(opt.image_size),
                         transforms.ToTensor(),
                         normalize,
                     ])
